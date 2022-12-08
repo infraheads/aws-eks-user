@@ -1,5 +1,5 @@
 module "infraheads_aws_eks" {
-  source = "../infraheads_aws_eks"
+  source = "../hakob/infraheads_aws_eks"
   # source = "https://github.com/infraheads/infraheads_aws_eks.git"
 
   # EKS CLUSTER
@@ -27,7 +27,7 @@ module "infraheads_aws_eks" {
 
 
 module "infraheads_aws_eks_addons" {
-  source = "../infraheads_aws_eks/modules"
+  source = "../hakob/infraheads_aws_eks/modules"
   # source = "https://github.com/infraheads/infraheads_aws_eks.git/modules"
 
   eks_cluster_id       = module.infraheads_aws_eks.eks_cluster_id
@@ -63,13 +63,12 @@ module "infraheads_aws_eks_addons" {
   github_template_owner     = var.github_template_owner
   github_template_repo_name = var.github_template_repo_name
   #   #External DNS
-  #   enable_external_dns = var.enable_external_dns
-  #   external_dns_helm_config       = var.external_dns_helm_config
-  #   external_dns_irsa_policies     = var.external_dns_irsa_policies
-  #   eks_cluster_domain             = var.eks_cluster_domain
-  #   external_dns_private_zone      = var.external_dns_private_zone
-  #   external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
-  #   create_route53_zone            = var.create_route53_zone
+  enable_external_dns            = var.enable_external_dns
+  external_dns_irsa_policies     = var.external_dns_irsa_policies
+  eks_cluster_domain_name            = var.eks_cluster_domain
+  external_dns_private_zone      = var.external_dns_private_zone
+  external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
+  create_route53_zone            = var.create_route53_zone
   #   # ArgoCD workflow
   #   enable_argo_workflows          = var.enable_argo_workflows
   #   argo_workflows_helm_config     = var.argo_workflows_helm_config

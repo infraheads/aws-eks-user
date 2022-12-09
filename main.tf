@@ -69,6 +69,9 @@ module "infraheads_aws_eks_addons" {
   external_dns_private_zone      = var.external_dns_private_zone
   external_dns_route53_zone_arns = var.external_dns_route53_zone_arns
   create_route53_zone            = var.create_route53_zone
+  external_dns_helm_config = {
+    values = var.external_dns_valuesfile
+  }
   #   # ArgoCD workflow
   #   enable_argo_workflows          = var.enable_argo_workflows
   #   argo_workflows_helm_config     = var.argo_workflows_helm_config

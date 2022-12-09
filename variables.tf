@@ -219,11 +219,11 @@ variable "argocd_manage_add_ons" {
   default     = false
 }
 
-# variable "external_dns_helm_config" {
-#   description = "External DNS Helm Chart config"
-#   type        = any
-#   default     = {}
-# }
+variable "external_dns_valuesfile" {
+  description = "External DNS Helm Chart config"
+  type        = string
+  default     = ""
+}
 
 variable "external_dns_irsa_policies" {
   description = "Additional IAM policies for a IAM role for service accounts"

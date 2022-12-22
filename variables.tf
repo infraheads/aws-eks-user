@@ -285,6 +285,7 @@ variable "data_plane_wait_arn" {
 variable "eks_cluster_domain_name" {
   description = "Domain name of the Route53 hosted zone to use with External DNS."
   type        = string
+  default = ""
 }
 
 
@@ -1228,8 +1229,8 @@ variable "enable_secrets_store_csi_driver" {
 
 variable "secrets_store_csi_driver_helm_config" {
   type        = any
-  default     = null
   description = "CSI Secrets Store Provider Helm Configurations"
+  default     = null
 }
 
 #-----------AWS PCA ISSUER-------------

@@ -25,7 +25,6 @@ module "infraheads_aws_eks" {
   }
 }
 
-
 module "infraheads_aws_eks_addons" {
   source = "../infraheads_aws_eks/modules"
   # source = "https://github.com/infraheads/infraheads_aws_eks.git/modules"

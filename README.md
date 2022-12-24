@@ -48,7 +48,7 @@ cluster_name                          = "Amigo"       # Required
 cluster_version                       = "1.23"
 enable_argocd                         = true
 argocd_apps_chart_version             = "0.0.4"
-enable_ingress_nginx                  = true
+enable_ingress_nginx                  = false
 ```
 ```bash
 terraform apply

@@ -8,7 +8,7 @@ cluster_control_plane_subnet_ids      = ["subnet-041a52133419bb94a", "subnet-03f
 eks_cluster_node_group_instance_types = ["t3.medium"]  #Required
 eks_cluster_node_group_subnet_ids     = ["subnet-041a52133419bb94a", "subnet-03f20810e9a9bcf9f"]  #Required
 eks_cluster_node_group_name           = "my-nodegroup" #Required
-desired_size                          = 2
+desired_size                          = 1
 max_size                              = 5
 min_size                              = 1
 
@@ -151,11 +151,22 @@ coredns_autoscaler_helm_config = {}
 #  argocd_manage_add_ons          = var.argocd_manage_add_ons
 
 #CROSSPLANE
-enable_crossplane              = {}
+enable_crossplane              = false
 crossplane_helm_config         = {}
-crossplane_aws_provider        = {}
-crossplane_jet_aws_provider    = {}
-crossplane_kubernetes_provider = {}
+crossplane_aws_provider        = {
+	enable                   = false
+    provider_aws_version     = "v0.24.1"
+    additional_irsa_policies = []
+}
+crossplane_jet_aws_provider    = {
+	enable                   = false
+    provider_aws_version     = "v0.24.1"
+    additional_irsa_policies = []
+}
+crossplane_kubernetes_provider = {
+	enable                      = false
+    provider_kubernetes_version = "v0.4.1"
+}
 
 #DATADOG OPERATOR
 enable_datadog_operator      = false
@@ -454,15 +465,16 @@ argocd_apps_self_heal              = false
     
 #Github repository
 enable_github_repo    = true #default = false
-github_token          = "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"
+github_token          = ""
 github_owner          = "armenmelkonyan90"
+github_repo_name = "demo"
 github_description    = ""                   #default =   
 github_visibility     = "public"             #default =  public 
 github_template_owner = "armenmelkonyan90"   #default = null
 template_repo_name    = "devops_task_ArgoCD" #default = null
 
 #External dns
-enable_external_dns            = "true"
+enable_external_dns            = false
 external_dns_helm_config       = {}
 external_dns_irsa_policies     = []
 eks_cluster_domain             = "gymops.click"

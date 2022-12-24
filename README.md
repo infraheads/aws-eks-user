@@ -95,7 +95,6 @@ terraform apply
 |Apache Airflow ADDON
 |enable_airflow | Enable Airflow add-on | `bool` | `false` | no |
 |airflow_helm_config | Apache Airflow v2 Helm Chart config | `any` | `{}` | no |
-|
 |eks_cluster_id | EKS Cluster Id | `string` |  | yes |
 |eks_cluster_domain | The domain for the EKS cluster | `string` | `""` | no |
 |eks_worker_security_group_id | EKS Worker Security group Id created by EKS module | `string` | `""` | no |

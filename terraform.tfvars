@@ -1,13 +1,13 @@
 region                                = "eu-central-1"
-cluster_name                          = "Amigo"    #Required
+cluster_name                          = "Amigo" #Required
 cluster_version                       = "1.23"
-cluster_vpc_id                        = "vpc-0cd9f1192089cc3d1"   #Required
-cluster_private_subnet_ids            = [] 
-cluster_public_subnet_ids             = ["subnet-041a52133419bb94a", "subnet-03f20810e9a9bcf9f"] #Required
-cluster_control_plane_subnet_ids      = ["subnet-041a52133419bb94a", "subnet-03f20810e9a9bcf9f"]#Required
-eks_cluster_node_group_instance_types = ["t3.medium"]  #Required
-eks_cluster_node_group_subnet_ids     = ["subnet-041a52133419bb94a", "subnet-03f20810e9a9bcf9f"]  #Required
-eks_cluster_node_group_name           = "my-nodegroup" #Required
+cluster_vpc_id                        = "vpc-099f541c1e0355870" #Required
+cluster_private_subnet_ids            = []
+cluster_public_subnet_ids             = ["subnet-0d29af39329819d69", "subnet-0f72d078e790654e3"] #Required
+cluster_control_plane_subnet_ids      = ["subnet-0d29af39329819d69", "subnet-0f72d078e790654e3"] #Required
+eks_cluster_node_group_instance_types = ["t3.medium"]                                            #Required
+eks_cluster_node_group_subnet_ids     = ["subnet-0d29af39329819d69", "subnet-0f72d078e790654e3"] #Required
+eks_cluster_node_group_name           = "my-nodegroup"                                           #Required
 desired_size                          = 1
 max_size                              = 5
 min_size                              = 1
@@ -18,7 +18,7 @@ min_size                              = 1
 eks_cluster_endpoint          = ""
 eks_oidc_provider             = ""
 data_plane_wait_arn           = ""
-eks_cluster_id                = ""
+eks_cluster_id                = "1"
 tags                          = {}
 irsa_iam_role_path            = ""
 irsa_iam_permissions_boundary = ""
@@ -29,7 +29,7 @@ enable_ipv6               = false
 amazon_eks_vpc_cni_config = {}
 
 #AWS COREDNS
-custom_image_registry_uri = {}
+custom_image_registry_uri                           = {}
 enable_amazon_eks_coredns                           = false
 enable_self_managed_coredns                         = false
 amazon_eks_coredns_config                           = {}
@@ -57,7 +57,7 @@ enable_airflow      = false
 airflow_helm_config = {}
 
 #ARGO-CD
-enable_argocd       = false
+enable_argocd       = true
 argocd_helm_config  = {}
 argocd_applications = {}
 
@@ -107,8 +107,8 @@ aws_load_balancer_controller_helm_config = {}
 #  argocd_manage_add_ons                    = var.argocd_manage_add_ons
 
 #AWS NODE TERMINATION HANDLER
-enable_aws_node_termination_handler        = false
-auto_scaling_group_names                   = []
+enable_aws_node_termination_handler = false
+auto_scaling_group_names            = []
 #  enable_karpenter                           = var.enable_karpenter
 aws_node_termination_handler_helm_config   = {}
 aws_node_termination_handler_irsa_policies = []
@@ -120,8 +120,8 @@ appmesh_helm_config       = {}
 appmesh_irsa_policies     = []
 
 #CERT MANAGER
-enable_cert_manager                            = false
-cert_manager_helm_config                       = {}
+enable_cert_manager      = false
+cert_manager_helm_config = {}
 #  argocd_manage_add_ons                          = var.argocd_manage_add_ons
 cert_manager_irsa_policies                     = []
 cert_manager_domain_names                      = []
@@ -151,21 +151,21 @@ coredns_autoscaler_helm_config = {}
 #  argocd_manage_add_ons          = var.argocd_manage_add_ons
 
 #CROSSPLANE
-enable_crossplane              = false
-crossplane_helm_config         = {}
-crossplane_aws_provider        = {
-	enable                   = false
-    provider_aws_version     = "v0.24.1"
-    additional_irsa_policies = []
+enable_crossplane      = false
+crossplane_helm_config = {}
+crossplane_aws_provider = {
+  enable                   = false
+  provider_aws_version     = "v0.24.1"
+  additional_irsa_policies = []
 }
-crossplane_jet_aws_provider    = {
-	enable                   = false
-    provider_aws_version     = "v0.24.1"
-    additional_irsa_policies = []
+crossplane_jet_aws_provider = {
+  enable                   = false
+  provider_aws_version     = "v0.24.1"
+  additional_irsa_policies = []
 }
 crossplane_kubernetes_provider = {
-	enable                      = false
-    provider_kubernetes_version = "v0.4.1"
+  enable                      = false
+  provider_kubernetes_version = "v0.4.1"
 }
 
 #DATADOG OPERATOR
@@ -197,9 +197,9 @@ karpenter_sqs_queue_arn             = ""
 #  argocd_manage_add_ons               = var.argocd_manage_add_ons
 
 #KEDA
-enable_keda           = false
-keda_helm_config      = {}
-keda_irsa_policies    = []
+enable_keda        = false
+keda_helm_config   = {}
+keda_irsa_policies = []
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #KUBERNETES DASHBOARD
@@ -213,17 +213,17 @@ metrics_server_helm_config = {}
 #  argocd_manage_add_ons      = var.argocd_manage_add_ons
 
 #ONDAT
-enable_ondat          = false
-ondat_helm_config     = {}
+enable_ondat      = false
+ondat_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
-ondat_irsa_policies   = []
-ondat_create_cluster  = false
-ondat_etcd_endpoints  = []
-ondat_etcd_ca         = ""
-ondat_etcd_cert       = ""
-ondat_etcd_key        = ""
-ondat_admin_username  = ""
-ondat_admin_password  = ""
+ondat_irsa_policies  = []
+ondat_create_cluster = false
+ondat_etcd_endpoints = []
+ondat_etcd_ca        = ""
+ondat_etcd_cert      = ""
+ondat_etcd_key       = ""
+ondat_admin_username = ""
+ondat_admin_password = ""
 
 #KUBE PROMETHEUS STACK
 enable_kube_prometheus_stack      = false
@@ -241,13 +241,13 @@ amazon_prometheus_workspace_endpoint = ""
 #  argocd_manage_add_ons                = var.argocd_manage_add_ons
 
 #RELOADER
-enable_reloader       = false
-reloader_helm_config  = {}
+enable_reloader      = false
+reloader_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #SPARK HISTORY SERVER
-enable_spark_history_server        = false
-spark_history_server_helm_config   = {}
+enable_spark_history_server      = false
+spark_history_server_helm_config = {}
 #  argocd_manage_add_ons              = var.argocd_manage_add_ons
 spark_history_server_irsa_policies = []
 spark_history_server_s3a_path      = ""
@@ -281,29 +281,29 @@ tetrate_istio_gateway_helm_config = {}
 #  argocd_manage_add_ons             = var.argocd_manage_add_ons
 
 #THANOS
-enable_thanos         = false
-thanos_helm_config    = {}
+enable_thanos      = false
+thanos_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
-thanos_irsa_policies  = []
+thanos_irsa_policies = []
 
 #TRAEFIK
-enable_traefik        = false
-traefik_helm_config   = {}
+enable_traefik      = false
+traefik_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #VAULT
-enable_vault          = false
-vault_helm_config     = {}
+enable_vault      = false
+vault_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #VPA
-enable_vpa            = false
-vpa_helm_config       = {}
+enable_vpa      = false
+vpa_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #YUNIKORN
-enable_yunikorn       = false
-yunikorn_helm_config  = {}
+enable_yunikorn      = false
+yunikorn_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #CSI SECRETS STORE PROVIDER AWS 
@@ -317,15 +317,15 @@ secrets_store_csi_driver_helm_config = {}
 #  argocd_manage_add_ons                = var.argocd_manage_add_ons
 
 #AWS PRIVATECA ISSUER
-enable_aws_privateca_issuer        = false
-aws_privateca_issuer_helm_config   = {}
+enable_aws_privateca_issuer      = false
+aws_privateca_issuer_helm_config = {}
 #  argocd_manage_add_ons              = var.argocd_manage_add_ons
 aws_privateca_acmca_arn            = ""
 aws_privateca_issuer_irsa_policies = []
 
 #VELERO
-enable_velero           = false
-velero_helm_config      = {}
+enable_velero      = false
+velero_helm_config = {}
 #  argocd_manage_add_ons   = var.argocd_manage_add_ons
 velero_irsa_policies    = []
 velero_backup_s3_bucket = ""
@@ -339,15 +339,15 @@ opentelemetry_operator_helm_config = {}
 #  argocd_manage_add_ons              = var.argocd_manage_add_ons
 
 #ADOT COLLECTOR JAVA
-enable_adot_collector_java           = false
-adot_collector_java_helm_config      = {}
+enable_adot_collector_java      = false
+adot_collector_java_helm_config = {}
 #  amazon_prometheus_workspace_endpoint = var.amazon_prometheus_workspace_endpoint
-amazon_prometheus_workspace_region   = ""
+amazon_prometheus_workspace_region = ""
 #  argocd_manage_add_ons                = var.argocd_manage_add_ons
 
 #ADOT COLLECTOR HAPROXY
-enable_adot_collector_haproxy        = false
-adot_collector_haproxy_helm_config   = {}
+enable_adot_collector_haproxy      = false
+adot_collector_haproxy_helm_config = {}
 #  amazon_prometheus_workspace_endpoint = var.amazon_prometheus_workspace_endpoint
 #  amazon_prometheus_workspace_region   = var.amazon_prometheus_workspace_region
 #  argocd_manage_add_ons                = var.argocd_manage_add_ons
@@ -360,8 +360,8 @@ adot_collector_memcached_helm_config = {}
 #  argocd_manage_add_ons                = var.argocd_manage_add_ons
 
 #ADOT COLLECTOR NGINX
-enable_adot_collector_nginx          = false
-adot_collector_nginx_helm_config     = {}
+enable_adot_collector_nginx      = false
+adot_collector_nginx_helm_config = {}
 #  amazon_prometheus_workspace_endpoint = var.amazon_prometheus_workspace_endpoint
 #  amazon_prometheus_workspace_region   = var.amazon_prometheus_workspace_region
 #  argocd_manage_add_ons                = var.argocd_manage_add_ons
@@ -379,18 +379,18 @@ external_secrets_secrets_manager_arns = []
 #  argocd_manage_add_ons                 = var.argocd_manage_add_ons
 
 #PROMTAIL
-enable_promtail       = false
-promtail_helm_config  = {}
+enable_promtail      = false
+promtail_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #CALICO
-enable_calico         = false
+enable_calico = false
 #  promtail_helm_config  = var.promtail_helm_config
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #KUBECOST
-enable_kubecost       = false
-kubecost_helm_config  = {}
+enable_kubecost      = false
+kubecost_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #KYVERNO
@@ -442,8 +442,8 @@ eks_oidc_provider_arn = ""
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #CONSUL
-enable_consul         = false
-consul_helm_config    = {}
+enable_consul      = false
+consul_helm_config = {}
 #  argocd_manage_add_ons = var.argocd_manage_add_ons
 
 #Argocd-apps
@@ -462,12 +462,12 @@ argocd_apps_source_target_recurse  = true
 argocd_apps_destination_namespace  = "my-app"
 argocd_apps_prune                  = false
 argocd_apps_self_heal              = false
-    
+
 #Github repository
 enable_github_repo    = true #default = false
-github_token          = ""
+github_token          = "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"
 github_owner          = "armenmelkonyan90"
-github_repo_name = "demo"
+github_repo_name      = "demo"
 github_description    = ""                   #default =   
 github_visibility     = "public"             #default =  public 
 github_template_owner = "armenmelkonyan90"   #default = null

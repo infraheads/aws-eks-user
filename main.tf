@@ -34,15 +34,22 @@ module "infraheads_aws_eks_addons" {
   # source = "https://github.com/infraheads/infraheads_aws_eks.git/modules"
 
   #EKS ADDONS
+  depends_on = [
+    module.infraheads_aws_eks
+  ]
 
   #ADDON CONTEXT  
-  eks_cluster_endpoint          = var.eks_cluster_endpoint
-  eks_oidc_provider             = var.eks_oidc_provider
+  eks_cluster_endpoint          = module.infraheads_aws_eks.eks_cluster_endpoint #var.eks_cluster_endpoint
+  eks_oidc_provider             = module.infraheads_aws_eks.eks_oidc_provider_arn #var.eks_oidc_provider
+  eks_cluster_id                = module.infraheads_aws_eks.eks_cluster_id #var.eks_cluster_id
+  eks_cluster_version           = module.infraheads_aws_eks.eks_cluster_version
   data_plane_wait_arn           = var.data_plane_wait_arn
-  eks_cluster_id                = var.eks_cluster_id
   tags                          = var.tags
   irsa_iam_role_path            = var.irsa_iam_role_path
   irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
+
+ 
+  
 
   #AWS VPC CNI
   enable_amazon_eks_vpc_cni = var.enable_amazon_eks_vpc_cni
@@ -353,7 +360,6 @@ module "infraheads_aws_eks_addons" {
   #OPENTELEMETRY OPERATOR
   enable_amazon_eks_adot             = var.enable_amazon_eks_adot
   enable_opentelemetry_operator      = var.enable_opentelemetry_operator
-  eks_cluster_version                = var.eks_cluster_version
   amazon_eks_adot_config             = var.amazon_eks_adot_config
   opentelemetry_operator_helm_config = var.opentelemetry_operator_helm_config
   #  argocd_manage_add_ons              = var.argocd_manage_add_ons
@@ -485,8 +491,8 @@ module "infraheads_aws_eks_addons" {
   argocd_apps_values                 = var.argocd_apps_values
 
   #GITHUB REPO
-  enable_github_repo = var.enable_github_repo
-  github_repo_name   = var.github_repo_name
+  enable_github_repo        = var.enable_github_repo
+  github_repo_name          = var.github_repo_name
   github_description        = var.github_description
   github_visibility         = var.github_visibility
   github_template_owner     = var.github_template_owner

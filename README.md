@@ -6,12 +6,6 @@ Terraform module which creates AWS EKS (Kubernetes) cluster and associated resou
 ## Description
 
 # Getting Started
-## Prerequisites
-Before using the module, you need to install the following tools:
-
-- [Kubectl](https://kubernetes.io/docs/tasks/tools/)
-- [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-- *You also need to have an [AWS account](https://portal.aws.amazon.com/billing/signup#/start/email)*
 
 ## Activating the module
 ```bash

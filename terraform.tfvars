@@ -1,16 +1,19 @@
 region                                = "eu-central-1"
 cluster_name                          = "Amigo" #Required
 cluster_version                       = "1.23"
-cluster_vpc_id                        = "vpc-099f541c1e0355870" #Required
+create_vpc                            = false
+vpc_cidr                              = "10.0.0.0/16"
+cluster_vpc_id                        = "vpc-02cb352d96264ae34" #Required
 cluster_private_subnet_ids            = []
-cluster_public_subnet_ids             = ["subnet-0d29af39329819d69", "subnet-0f72d078e790654e3"] #Required
-cluster_control_plane_subnet_ids      = ["subnet-0d29af39329819d69", "subnet-0f72d078e790654e3"] #Required
+cluster_public_subnet_ids             = ["subnet-0dc5c2810e8d0b079", "subnet-075cd2e5d02b7c5f2"] #Required
+cluster_control_plane_subnet_ids      = ["subnet-0dc5c2810e8d0b079", "subnet-075cd2e5d02b7c5f2"] #Required
 eks_cluster_node_group_instance_types = ["t3.medium"]                                            #Required
-eks_cluster_node_group_subnet_ids     = ["subnet-0d29af39329819d69", "subnet-0f72d078e790654e3"] #Required
+eks_cluster_node_group_subnet_ids     = ["subnet-0dc5c2810e8d0b079", "subnet-075cd2e5d02b7c5f2"] #Required
 eks_cluster_node_group_name           = "my-nodegroup"                                           #Required
 desired_size                          = 1
-max_size                              = 5
+max_size                              = 2
 min_size                              = 1
+
 
 #--------EKS ADDONS---------
 
@@ -57,8 +60,16 @@ enable_airflow      = false
 airflow_helm_config = {}
 
 #ARGO-CD
-enable_argocd       = true
-argocd_helm_config  = {}
+enable_argocd = true
+argocd_helm_config = {
+  set = [
+    {
+      name  = "server.service.type"
+      value = "LoadBalancer"
+    }
+  ]
+
+}
 argocd_applications = {}
 
 #ARGO-CD ROLLOUTS
@@ -455,7 +466,7 @@ argocd_apps_namespace              = "argocd"
 argocd_apps_values                 = ""
 argocd_apps_name                   = "my-app"
 argocd_apps_project                = "default"
-argocd_apps_source_repo            = "https://github.com/armenmelkonyan90/devops_task_ArgoCD"
+argocd_apps_source_repo            = "" #"https://github.com/armenmelkonyan90/devops_task_ArgoCD"
 argocd_apps_source_target_revision = "HEAD"
 argocd_apps_source_target_path     = "ArgoApps"
 argocd_apps_source_target_recurse  = true
@@ -464,14 +475,14 @@ argocd_apps_prune                  = false
 argocd_apps_self_heal              = false
 
 #Github repository
-enable_github_repo    = true #default = false
-github_token          = "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"
-github_owner          = "armenmelkonyan90"
-github_repo_name      = "demo"
-github_description    = ""                   #default =   
-github_visibility     = "public"             #default =  public 
-github_template_owner = "armenmelkonyan90"   #default = null
-template_repo_name    = "devops_task_ArgoCD" #default = null
+enable_github_repo        = true #default = false
+github_token              = "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"
+github_owner              = "armenmelkonyan90"
+github_repo_name          = "demo"
+github_description        = ""              #default =   
+github_visibility         = "public"        #default =  public 
+github_template_owner     = "Sahakanush"    #default = null
+github_template_repo_name = "template-repo" #default = null
 
 #External dns
 enable_external_dns            = false

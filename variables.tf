@@ -199,10 +199,7 @@ variable "airflow_helm_config" {
 }
 
 ######################
-variable "eks_cluster_id" {
-  description = "EKS Cluster Id"
-  type        = string
-}
+
 
 variable "eks_cluster_domain" {
   description = "The domain for the EKS cluster"
@@ -1666,4 +1663,32 @@ variable "crossplane_kubernetes_provider" {
     enable                      = false
     provider_kubernetes_version = "v0.4.1"
   }
+}
+
+variable "map_users" {
+  description = "Additional IAM users to add to the aws-auth ConfigMap"
+  type = list(object({
+    userarn  = string
+    username = string
+    groups   = list(string)
+  }))
+  default = []
+  
+}
+variable "create_vpc" {
+	type = bool
+	description = "Create Vpc"
+}
+
+variable "vpc_name" {
+	type = string
+	description = "VPC name"
+	default = "Amigo_vpc"
+  
+}
+
+variable "vpc_cidr" {
+	type = string
+	description = "VPC cidre"
+	default = "10.0.0.0/16"
 }

@@ -1,12 +1,15 @@
 module "infraheads_aws_eks" {
-  source = "../aws-eks"
-  # source = "https://github.com/infraheads/infraheads_aws_eks.git"
+  #source = "../aws-eks"
+  source = "github.com/infraheads/infraheads_aws_eks"
 
   # EKS CLUSTER
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
 
+  create_vpc = var.create_vpc
+  vpc_name   = local.vpc_name
+  vpc_cidr   = var.vpc_cidr
   # Enter VPC ID
   vpc_id = var.cluster_vpc_id
 
@@ -14,6 +17,7 @@ module "infraheads_aws_eks" {
   private_subnet_ids       = var.cluster_private_subnet_ids
   public_subnet_ids        = var.cluster_public_subnet_ids
   control_plane_subnet_ids = var.cluster_control_plane_subnet_ids
+  map_users                = var.map_users
 
   # EKS MANAGED NODE GROUPS
   managed_node_groups = {
@@ -30,8 +34,8 @@ module "infraheads_aws_eks" {
 }
 
 module "infraheads_aws_eks_addons" {
-  source = "../aws-eks/modules"
-  # source = "https://github.com/infraheads/infraheads_aws_eks.git/modules"
+  #source = "../aws-eks/modules"
+  source = "github.com/infraheads/infraheads_aws_eks/modules"
 
   #EKS ADDONS
   depends_on = [
@@ -39,22 +43,23 @@ module "infraheads_aws_eks_addons" {
   ]
 
   #ADDON CONTEXT  
-  eks_cluster_endpoint          = module.infraheads_aws_eks.eks_cluster_endpoint #var.eks_cluster_endpoint
+  eks_cluster_endpoint          = module.infraheads_aws_eks.eks_cluster_endpoint  #var.eks_cluster_endpoint
   eks_oidc_provider             = module.infraheads_aws_eks.eks_oidc_provider_arn #var.eks_oidc_provider
-  eks_cluster_id                = module.infraheads_aws_eks.eks_cluster_id #var.eks_cluster_id
+  eks_cluster_id                = module.infraheads_aws_eks.eks_cluster_id        #var.eks_cluster_id
   eks_cluster_version           = module.infraheads_aws_eks.eks_cluster_version
   data_plane_wait_arn           = var.data_plane_wait_arn
   tags                          = var.tags
   irsa_iam_role_path            = var.irsa_iam_role_path
   irsa_iam_permissions_boundary = var.irsa_iam_permissions_boundary
 
- 
-  
+
+
 
   #AWS VPC CNI
   enable_amazon_eks_vpc_cni = var.enable_amazon_eks_vpc_cni
   enable_ipv6               = var.enable_ipv6
   amazon_eks_vpc_cni_config = var.amazon_eks_vpc_cni_config
+
 
   #AWS COREDNS
   custom_image_registry_uri                           = var.custom_image_registry_uri
@@ -307,11 +312,6 @@ module "infraheads_aws_eks_addons" {
   tetrate_istio_gateway_helm_config = var.tetrate_istio_gateway_helm_config
   #  argocd_manage_add_ons             = var.argocd_manage_add_ons
 
-  #THANOS
-  enable_thanos      = var.enable_thanos
-  thanos_helm_config = var.thanos_helm_config
-  #  argocd_manage_add_ons = var.argocd_manage_add_ons
-  thanos_irsa_policies = var.thanos_irsa_policies
 
   #TRAEFIK
   enable_traefik      = var.enable_traefik
@@ -481,7 +481,7 @@ module "infraheads_aws_eks_addons" {
 
   argocd_apps_name                   = var.argocd_apps_name
   argocd_apps_project                = var.argocd_apps_project
-  argocd_apps_source_repo            = var.argocd_apps_source_repo
+  argocd_apps_source_repo            = local.argocd_apps_repo_url
   argocd_apps_source_target_revision = var.argocd_apps_source_target_revision
   argocd_apps_source_target_path     = var.argocd_apps_source_target_path
   argocd_apps_source_target_recurse  = var.argocd_apps_source_target_recurse

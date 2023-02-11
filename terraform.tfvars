@@ -1,7 +1,7 @@
 region                                = "eu-central-1"
 cluster_name                          = "Amigo" #Required
 cluster_version                       = "1.23"
-create_vpc                            = false
+create_vpc                            = true
 vpc_cidr                              = "10.0.0.0/16"
 cluster_vpc_id                        = "vpc-02cb352d96264ae34" #Required
 cluster_private_subnet_ids            = []

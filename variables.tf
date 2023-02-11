@@ -22,18 +22,18 @@ variable "cluster_vpc_id" {
 }
 
 variable "cluster_private_subnet_ids" {
-  type 	      = list
+  type 	      = any
   description = "Eks cluster private subnet ids"
   default     = [""]
 }
 
 variable "cluster_public_subnet_ids" {
-  type        = list(any)
+  type        = any
   description = "Eks cluster public subnet ids"
 }
 
 variable "cluster_control_plane_subnet_ids" {
-  type        = list(any)
+  type        = any
   description = "Eks cluster controle plane subnet ids"
 }
 

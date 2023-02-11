@@ -1,6 +1,6 @@
 module "infraheads_aws_eks" {
-  #source = "../aws-eks"
-  source = "github.com/infraheads/infraheads_aws_eks"
+  source = "../aws-eks"
+  # source = "github.com/infraheads/infraheads_aws_eks"
 
   # EKS CLUSTER
 
@@ -34,8 +34,8 @@ module "infraheads_aws_eks" {
 }
 
 module "infraheads_aws_eks_addons" {
-  #source = "../aws-eks/modules"
-  source = "github.com/infraheads/infraheads_aws_eks/modules"
+  source = "../aws-eks/modules"
+  # source = "github.com/infraheads/infraheads_aws_eks/modules"
 
   #EKS ADDONS
   depends_on = [

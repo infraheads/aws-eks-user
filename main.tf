@@ -17,7 +17,6 @@ module "infraheads_aws_eks" {
   private_subnet_ids       = var.cluster_private_subnet_ids
   public_subnet_ids        = var.cluster_public_subnet_ids
   control_plane_subnet_ids = var.cluster_control_plane_subnet_ids
-  map_users                = var.map_users
 
   # EKS MANAGED NODE GROUPS
   managed_node_groups = {

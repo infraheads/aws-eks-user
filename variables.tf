@@ -1665,16 +1665,6 @@ variable "crossplane_kubernetes_provider" {
   }
 }
 
-variable "map_users" {
-  description = "Additional IAM users to add to the aws-auth ConfigMap"
-  type = list(object({
-    userarn  = string
-    username = string
-    groups   = list(string)
-  }))
-  default = []
-  
-}
 variable "create_vpc" {
 	type = bool
 	description = "Create Vpc"
